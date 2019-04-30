@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC  "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!-- 第一步，不能放在后面，外部的properties属性引入外部配置文件	 -->
+   <!-- <properties resource="config/db.properties">
+    </properties> -->
+  
+    <!-- 第二步，不能颠倒次序，全局配置参数,日志配置文件在src下 -->
+    <settings>
+         <setting name="logImpl"  value="LOG4J"/>
+       <!-- 自动映射，返回值只需要手动添加不一致的属性映射，其他都可以直接映射 -->
+       <setting name="autoMappingBehavior" value="PARTIAL"/>
+       <!-- 打开延迟加载 -->
+       <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 将积极加载改成消极加载（即按需加载） -->
+       <setting name="aggressiveLazyLoading" value="false"/>
+
+    </settings>
+    
+    <!-- 第三步，别名设置  -->
+     <typeAliases>
+        <!-- 批量扫描别名 -->
+   <package name="cn.com.phone.pojo"/>
+     </typeAliases>
+    
+
+
+    
+    <!--加载映射文件 -->
+   
+  <mappers>
+
+   <!--  <mapper  resource="sqlmap/UserMapper.xml" />
+    -->
+     
+     <!-- url为加载的映射文件的全路径 -->
+     <!-- <mapper usr=""/> -->
+     <!-- 通过mapper接口加载映射文件 
+             遵循一些规范：需要将mapper接口的类名和xxxMapper.xml文件名称保持一致，且在一个目录中
+            上述规范的前提是，使用的是mapper代理的方法
+     -->
+    <!--  <mapper class="mapper.SelcetMapper"/> -->
+    <!-- 批量的加载mapper,推荐使用
+     mapper接口的包名，mybatis自动扫描包下边的所有mapper接口进行加载
+            遵循一些规范：需要将mapper接口的类名和xxxMapper.xml文件名称保持一致，且在一个目录中
+            上述规范的前提是，使用的是mapper代理的方法
+    -->
+<!--      <package name="cn.com.sm.mapper"/>
+    -->
+  </mappers>
+
+  
+</configuration>
+   

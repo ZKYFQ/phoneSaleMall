@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	
+	<display-name>phoneSaleMall</display-name>
+	
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+		<!-- 加载spring的容器 -->
+ 		<context-param>
+			   <param-name>contextConfigLocation</param-name>
+		
+			   <param-value>/WEB-INF/classes/spring/applicationContext-dao.xml,
+			      /WEB-INF/classes/spring/applicationContext-service.xml,
+			     /WEB-INF/classes/spring/applicationContext-transaction.xml
+			   </param-value>
+			</context-param>
+		<listener>
+		  <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+		</listener>
+
+		<!-- 前端控制器DispatcherServlet -->
+	 <servlet>
+    <servlet-name>springmvc</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+    <!-- 指定的初始化参数，即一个上下文配置对象 contextConfigLocation
+    其value为SpringMVC的核心配置文件springmvc.xml-->
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring/springmvc.xml</param-value>
+    </init-param>
+  </servlet>	  
+  <servlet-mapping>
+    <servlet-name>springmvc</servlet-name>
+    <url-pattern>*.action</url-pattern>
+  </servlet-mapping>
+  
+  		<!-- RESTful的前端控制器DispatcherServlet -->
+	<!--  <servlet>
+    <servlet-name>springmvc_rest</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+     -->
+    <!-- 指定的初始化参数，即一个上下文配置对象 contextConfigLocation
+    其value为SpringMVC的核心配置文件springmvc.xml-->
+       <!-- <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring/springmvc.xml</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>springmvc_rest</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+   -->
+    <!-- 配置springMVC编码过滤器 -->  
+<filter>  
+    <filter-name>CharacterEncodingFilter</filter-name>  
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>  
+    <!-- 设置过滤器中的属性值 -->  
+    <init-param>  
+        <param-name>encoding</param-name>  
+        <param-value>UTF-8</param-value>  
+    </init-param>  
+    <!-- 启动过滤器 -->  
+    <init-param>  
+        <param-name>forceEncoding</param-name>  
+        <param-value>true</param-value>  
+    </init-param>  
+</filter>  
+<!-- 过滤所有请求 -->  
+<filter-mapping>  
+    <filter-name>CharacterEncodingFilter</filter-name>  
+    <url-pattern>/*</url-pattern>  
+</filter-mapping>  
+<!-- RESTful的前端控制器DispatcherServlet ,将普通的post请求转化成delete或者put请求-->
+	 <filter>
+	   <filter-name>HiddenHttpMethodFilter</filter-name>
+	   <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>
+	  </filter>	
+	  <filter-mapping>
+	    <filter-name>HiddenHttpMethodFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	  </filter-mapping>
+
+</web-app>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.2.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+  
+      <!-- 编写配置信息位置 -->
+     <!-- 扫描controller包 -->
+     
+     <context:component-scan base-package="cn.com.phone.controller"/>
+  
+     <mvc:annotation-driven  validator="validator"></mvc:annotation-driven>
+  
+      <!-- 视图解析器，默认InternalResourceViewResolver(根据模板名和位置解析视图) 
+            XMLViewResolver（从xml配置文件解析视图）
+            ResourceBundleViewResolver（从properties资源集解析视图）
+      -->
+      <bean id="jspViewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver" >
+          	<property name="viewClass" value="cn.com.phone.common.utils.HtmlResourceView"/>  
+            <property name="order" value="1" />  
+        	<property name="prefix" value="/WEB-INF/web/"/>
+          	<property name="suffix" value=".jsp"/>
+      </bean>
+     <bean id="htmlviewResolver"    
+        class="org.springframework.web.servlet.view.InternalResourceViewResolver">   
+        <property name="viewClass" value="cn.com.phone.common.utils.HtmlResourceView"/>  
+        <property name="order" value="1" />  
+        <property name="prefix" value="/WEB-INF/web/"/>  
+        <property name="suffix" value=".html" />    
+        <property name="contentType" value="text/html;charset=UTF-8"></property>    
+    </bean>
+    <!--  <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+       -->
+       <!-- 自定义参数类型绑定 -->
+     <!--    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+       -->
+       <!-- 自定义的转换器 -->
+       <!--<property name="converters">
+           <list>  -->
+           <!-- 日期类型的转化 -->
+       <!--    <bean class="cn.com.sm.controller.converter.CustomDateConverter"/> 
+           </list>
+       </property>
+       </bean>-->
+
+    <!-- 现今使用最多的配置手段，简洁方便，使用默认代替手动配置 -->
+   <!-- 校验器 -->
+    <bean id="validator"  class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+         <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
+         <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+     <!-- 校验错误信息配置文件 -->
+     <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+         <property name="basenames">
+            <list>
+            <!-- 要在cofig中创建ProductValidationMesssages.properties用来配置检验错误信息 -->
+               <value>classpath:ProductValidationMessages</value>
+            </list>
+         </property>   
+         <property name="fileEncodings" value="utf-8"/> 
+         <property name="cacheSeconds" value="120"/> 
+     </bean>
+     
+       <!-- 在jsp的表单中传输编码为multipart/form-data 传输的数据是能够被request接收到 -->
+  <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">       
+   <!--设置上传文件的大小 为5M -->
+   <property name="maxUploadSize">
+      <value>5242880</value>
+   </property>
+  </bean>
+    
+  <!-- 全局异常处理器 
+     只要实现HandlerExceptionResolver接口的都是全局异常处理器
+  -->
+    <!--  <bean class="cn.com.sm.exception.CustomExceptionResolver"/>
+    -->
+    <!-- 访问静态资源,解析静态资源 -->
+    <!-- 
+    <mvc:resources location="/js/" mapping="/js/**/" />
+    <mvc:resources location="/img/" mapping="/img/**/" />
+     <mvc:resources location="/css/" mapping="/css/**/" />
+      -->
+    </beans>

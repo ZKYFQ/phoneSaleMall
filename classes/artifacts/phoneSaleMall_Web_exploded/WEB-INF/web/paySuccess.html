@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>注册成功</title>
+	     <!-- web路径，不以/开始的相对路径，找资源，以当前的资源路径为基准(容易出错)
+	       以/开始的相对路径，找资源，以服务器的路径为标准（http://loaclhost:3306）;需要加上
+	       项目名
+	      -->
+		<!-- 引入样式 -->
+	   <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+	    <script src="/phoneSaleMall/static/js/jquery-1.9.min.js"  type="text/javascript"></script>
+	    <link href="/phoneSaleMall/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+	    <script src="/phoneSaleMall/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	    <script src="/phoneSaleMall/static/js/init.js" type="text/javascript"></script>
+		<script src="/phoneSaleMall/static/js/common.src.js" type="text/javascript"></script>
+		<script src="/phoneSaleMall/static/js/checkInfo.js"  type="text/javascript"></script>
+	    <!-- ================== 自定义样式==============================-->
+	      <style type="text/css">
+      .a_hover:hover{color: #f00;text-decoration: none;}
+  </style>
+  </head>
+  
+    <body>
+        <!-- 注册成功页面的头部 -->
+           <div class="container">
+<!-- ===============================头部信息===================================== -->
+                    <div class="row" >
+		              &nbsp;
+		            </div>
+		            <div class="row" >
+		                 <div class="col-md-9" >
+		                   <ul class="list-inline">
+		                     <li style="list-style-type:none">  <img src=""  height="50" width="150" id="leftTopPic"/></li>
+		                     <li style="list-style-type:none"><h2>支付结果</h2></li>
+		                 </ul>
+		                 </div>
+		                 <div class="col-md-3" >
+		                      &nbsp;
+		                      <div class="row"> &nbsp;</div>
+		                   <ul class="list-inline">
+		                     <li style="list-style-type:none"><a href="" class="a_hover"  id="home">去首页 ></a></li>
+		                 </ul>
+		                 </div>
+		            </div>
+		            <div class="row" style="background-color:#EBEBEB">&nbsp;</div>
+<!-- ===========================主体部分============================= -->           
+		              <div class="row col-sm-offset-3 col-md-5" >
+                         <div class="row">
+                           <div class="row">&nbsp;</div>
+                           <div class="col-sm-offset-5 col-md-3" >
+                              <ul class="list-inline">
+                              <li style="list-style-type:none">  <img src=""  height="70" width="75" id="reg_success1"/></li>
+		                  
+                           </div>
+                           <div class="row">
+                             <div class=" col-sm-offset-4 col-md-5" >
+                               <ul class="list-inline">
+                                 <li style="list-style-type:none"><h3><font color="green">该订单支付成功!</font></h3></li>
+		                      </ul>
+                            </div>
+                           </div>
+                           
+                            <div class="row">
+                             <div class="col-sm-offset-3  col-md-12" >
+                               <ul class="list-inline">
+                                 <li style="list-style-type:none"><h4>商城会尽快给您出货，请您注意查收哦！</h4></li>
+		                      </ul>
+                            </div>
+                           </div>
+                          <div class="row">
+                             <div class=" col-sm-offset-4  col-md-12" >
+                               <ul class="list-inline">
+                                 <li style="list-style-type:none"><h4>谢谢您长期对本商城的支持</h4></li>
+		                      </ul>
+                            </div>
+                           </div>
+                           
+                           <div class="row">
+                             <div class=" col-sm-offset-3 col-md-9" >
+                               <ul class="list-inline">
+                                 <li style="list-style-type:none"><span id="autoToHome" style="font-size:20px">5 </span><font size="4">秒后将自动跳转到主页..........</font>.</li>
+		                      </ul>
+                              </div>
+                            </div>
+      						<div class="row">
+                             <div class=" col-sm-offset-5 col-md-8" >
+                               <ul class="list-inline">
+                                 <li style="list-style-type:none"><button class="btn btn-warning btn-block " id="backHome">返回商城首页</button></li>
+		                      </ul>
+                            </div>
+                           </div>
+                        </div>
+                        
+                     </div>
+ 
+             </div>
+        
+ <!-- ===============================业务逻辑层进行数据的处理======================= -->
+    <script type="text/javascript">
+	//初始化			    
+    $(function(){
+			initPage("registerSuccess");
+			autoToPage();
+		});
+  //跳转到首页
+	     $("#backHome").click(function(){
+	    	 window.location.href="/phoneSaleMall/shopping/main.action";
+	   });
+    </script>
+    
+        
+        
+  <!-- ================================底部信息================================= --> 
+                         <div class="row">
+					     <div class="row">&nbsp;</div>
+                          <div class=" col-sm-offset-3 col-md-9 " >
+		                    <ul class="list-inline">
+		                     <li style="list-style-type:none"><a href="#" class='a_hover'>关于我们</a></li>
+		                     <li style="list-style-type:none">|</li>
+		                     <li style="list-style-type:none"><a href="#" class='a_hover'>联系我们</a></li>
+		                     <li style="list-style-type:none">|</li>
+		                     <li style="list-style-type:none"><a href="#" class='a_hover'>人才招聘</a></li>
+		                     <li style="list-style-type:none">|</li>
+		                     <li style="list-style-type:none"><a href="#" class='a_hover'>商家入驻</a></li>
+		                     <li style="list-style-type:none">|</li>
+		                     <li style="list-style-type:none"><a href="#" class='a_hover'>广告服务</a></li>
+		                     <li style="list-style-type:none">|</li>
+		                     <li style="list-style-type:none"><a href="#" class='a_hover'>友情链接</a></li>
+		                     <li style="list-style-type:none">|</li>
+		                     <li style="list-style-type:none"><a href="#" class='a_hover'>爱机社区</a></li>
+		                   </ul>
+                         </div>
+                             <div class="col-sm-offset-4 col-md-9" >
+                            Copyright © 2018-2019  东华理工大学长江学院ecit.com 版权所有
+                             </div>
+					    </div>
+					
+       
+  </body>
+</html>
